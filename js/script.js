@@ -43,15 +43,23 @@ for (let i = 0; i < immagini.length; i++) {
     }
 
 }
-const selectedThumb = document.querySelectorAll(".single-image");
-console.log(selectedThumb);
+const singleImage = document.querySelectorAll(".single-image");
+// console.log(singleImage)
+singleImage[imgCurrent].classList.add("active");
 
-selectedThumb[imgCurrent].classList.add("active");
+
 const upArrow = document.getElementById("up-arrow");
 // console.log(upArrow);
 upArrow.addEventListener("click", function () {
-    selectedThumb[imgCurrent].classList.remove("active");
+    singleImage[imgCurrent].classList.remove("active");
     imgCurrent--;
-    selectedThumb[imgCurrent].classList.add("active");
+    singleImage[imgCurrent].classList.add("active");
 });
 
+const downArrow = document.getElementById("down-arrow");
+// console.log(downArrow);
+downArrow.addEventListener("click", function () {
+    singleImage[imgCurrent].classList.remove("active");
+    imgCurrent++;
+    singleImage[imgCurrent].classList.add("active");
+});
