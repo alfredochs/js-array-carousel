@@ -29,10 +29,29 @@ const text = [
 
 const imageSelected = document.querySelector(".selected-image-container");
 const imagesContainer = document.querySelector(".images-slide-container");
+
+let imgCurrent = 4;
+
 for (let i = 0; i < immagini.length; i++) {
-    const imgSelected = immagini[i];
+    let imgSelected = immagini[i];
     const tagImg = `<img class="single-image" src="${imgSelected}" alt="immagine #${i + 1}">`;
     imagesContainer.innerHTML += tagImg;
-}
 
+    let classeDaUsare = "";
+    if (i === imgSelected) {
+        classeDaUsare = "active";
+    }
+
+}
+const selectedThumb = document.querySelectorAll(".single-image");
+console.log(selectedThumb);
+
+selectedThumb[imgCurrent].classList.add("active");
+const upArrow = document.getElementById("up-arrow");
+// console.log(upArrow);
+upArrow.addEventListener("click", function () {
+    selectedThumb[imgCurrent].classList.remove("active");
+    imgCurrent--;
+    selectedThumb[imgCurrent].classList.add("active");
+});
 
