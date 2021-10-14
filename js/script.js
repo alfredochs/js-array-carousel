@@ -63,3 +63,6 @@ downArrow.addEventListener("click", function () {
     imgCurrent++;
     singleImage[imgCurrent].classList.add("active");
 });
+
+const applyImgToContainer = `<img src="${imgSelected} alt="immagine selezionata">`;
+imageSelected.innerHTML += applyImgToContainer;
