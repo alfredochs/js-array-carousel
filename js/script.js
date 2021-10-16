@@ -14,7 +14,7 @@ const title = [
     'Paradise'
 ];
 
-const text = [
+const paragrafo = [
     'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.',
     'Lorem ipsum',
     'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
@@ -26,6 +26,7 @@ const text = [
 
 const immagineSinistra = document.getElementById("immagine-sinistra");
 const immaginiDestra = document.getElementById("immagini-destra");
+const testoSinistra = document.getElementById("contenitore-testo");
 
 let indiceImmagine = 0;
 
@@ -35,13 +36,36 @@ for (let i = 0; i < immagini.length; i++) {
     let classDaUsare = "";
     if (i === indiceImmagine) {
         classDaUsare = "active";
-
     }
     const tagImg = `<img class="${classDaUsare}" src="${immagineCorrente}" alt="immagine #${i}">`;
     immagineSinistra.innerHTML += tagImg;
     immaginiDestra.innerHTML += tagImg;
 }
 
+let indiceTitle = 0;
+
+for (let t = 0; t < title.length; t++) {
+    const titleCorrente = title[t];
+    let classeTitle = "";
+    if (t === indiceTitle) {
+        classeTitle = "active";
+    }
+
+    const tagTitle = `<p class="${classeTitle}">${titleCorrente}</p>`;
+    testoSinistra.innerHTML += tagTitle;
+}
+
+let indiceParagrafo = 0;
+for (let ts = 0; ts < paragrafo.length; ts++) {
+    const paragrafoCorrente = paragrafo[ts];
+    let classeDelParagrafo = "";
+    if (ts === indiceParagrafo) {
+        classeDelParagrafo = "active";
+    }
+    const tagParagrafo = `<p class="${classeDelParagrafo}">${paragrafoCorrente}</p>`;
+    testoSinistra.innerHTML += tagParagrafo;
+
+}
 
 // 6 Prendiamo i pulsanti su e giu
 const frecciaSu = document.querySelector(".freccia-su");
@@ -51,8 +75,10 @@ frecciaSu.addEventListener("click", function () {
 
     const immagineDiDefault = immagineSinistra.querySelector(".active");
     const immagineDiDefaultDestra = immaginiDestra.querySelector(".active");
+    const testiDiDefault = testoSinistra.querySelector(".active");
     immagineDiDefault.classList.remove("active");
     immagineDiDefaultDestra.classList.remove("active");
+    testiDiDefault.classList.remove("active");
 
     indiceImmagine--;
 
