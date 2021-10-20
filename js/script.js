@@ -1,12 +1,12 @@
-const immagini = [
-    'img/01.jpg',
-    'img/02.jpg',
-    'img/03.jpg',
-    'img/04.jpg',
-    'img/05.jpg'
+const foto = [
+    'img/01.JPG',
+    'img/02.JPG',
+    'img/03.JPG',
+    'img/04.JPG',
+    'img/05.JPG',
 ];
 
-const title = [
+const titolo = [
     'Svezia',
     'Svizzera',
     'Gran Bretagna',
@@ -22,95 +22,76 @@ const paragrafo = [
     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
 ];
 
+const containerSinistra = document.getElementById("container-sx");
+const containerDestra = document.getElementById("container-dx");
 
+let indiceFoto = 0;
 
-const immagineSinistra = document.getElementById("immagine-sinistra");
-const immaginiDestra = document.getElementById("immagini-destra");
-const testoSinistra = document.getElementById("contenitore-testo");
+for (let f = 0; f < foto.length; f++) {
+    const fotoSingola = foto[f];
+    const titoloSingolo = titolo[f];
+    const paragrafoSingolo = paragrafo[f];
 
-let indiceImmagine = 0;
+    let classeActive = "";
+    let classeActiveSx = "";
 
-for (let i = 0; i < immagini.length; i++) {
-    const immagineCorrente = immagini[i];
-
-    let classDaUsare = "";
-    if (i === indiceImmagine) {
-        classDaUsare = "active";
+    if (f === indiceFoto) {
+        classeActive = "active";
+        classeActiveSx = "active";
     }
-    const tagImg = `<img class="${classDaUsare}" src="${immagineCorrente}" alt="immagine #${i}">`;
-    immagineSinistra.innerHTML += tagImg;
-    immaginiDestra.innerHTML += tagImg;
+    const tagFoto = `<img class="${classeActive}" src="${fotoSingola}"></img>`;
+
+    const tagFotoSx = `<div id="img-text-container" class="${classeActiveSx}">
+                        <img src="${fotoSingola}">
+                        <div id="container-text" class="position-absolute">
+                        <h1>${titoloSingolo}</h1>
+                        <p>${paragrafoSingolo}</p>
+                        </div>
+                        </div>`;
+
+    containerSinistra.innerHTML += tagFotoSx;
+    containerDestra.innerHTML += tagFoto;
 }
 
-let indiceTitle = 0;
-
-for (let t = 0; t < title.length; t++) {
-    const titleCorrente = title[t];
-    let classeTitle = "";
-    if (t === indiceTitle) {
-        classeTitle = "active";
-    }
-
-    const tagTitle = `<p class="${classeTitle}">${titleCorrente}</p>`;
-    testoSinistra.innerHTML += tagTitle;
-}
-
-let indiceParagrafo = 0;
-for (let ts = 0; ts < paragrafo.length; ts++) {
-    const paragrafoCorrente = paragrafo[ts];
-    let classeDelParagrafo = "";
-    if (ts === indiceParagrafo) {
-        classeDelParagrafo = "active";
-    }
-    const tagParagrafo = `<p class="${classeDelParagrafo}">${paragrafoCorrente}</p>`;
-    testoSinistra.innerHTML += tagParagrafo;
-
-}
-
-// 6 Prendiamo i pulsanti su e giu
-const frecciaSu = document.querySelector(".freccia-su");
-const frecciaGiu = document.querySelector(".freccia-giu");
+const frecciaSu = document.getElementById("freccia-su");
+const frecciaGiu = document.getElementById("freccia-giu");
 
 frecciaSu.addEventListener("click", function () {
+    const immagineDiDefault = containerSinistra.querySelector(".active");
+    const immagineDiDefaultDestra = containerDestra.querySelector(".active");
 
-    const immagineDiDefault = immagineSinistra.querySelector(".active");
-    const immagineDiDefaultDestra = immaginiDestra.querySelector(".active");
-    const testiDiDefault = testoSinistra.querySelector(".active");
     immagineDiDefault.classList.remove("active");
     immagineDiDefaultDestra.classList.remove("active");
-    testiDiDefault.classList.remove("active");
-
-    indiceImmagine--;
-
-    if (indiceImmagine < 0) {
-        indiceImmagine = immagini.length - 1;
+    indiceFoto--;
+    if (indiceFoto < 0) {
+        indiceFoto = foto.length - 1;
     }
+    const imgArrayFinto = containerSinistra.querySelectorAll("#img-text-container");
+    const imgArrayFintoDestra = containerDestra.querySelectorAll("img");
 
-    const imgArrayFinto = immagineSinistra.querySelectorAll("img");
-    const imgArrayFintoDestra = immaginiDestra.querySelectorAll("img");
+    const nuovaImgActive = imgArrayFinto[indiceFoto];
+    const nuovaImgActiveDestra = imgArrayFintoDestra[indiceFoto];
 
-    const nuovaImgActive = imgArrayFinto[indiceImmagine];
-    const nuovaImgActiveDestra = imgArrayFintoDestra[indiceImmagine];
     nuovaImgActive.classList.add("active");
     nuovaImgActiveDestra.classList.add("active");
 });
 
 frecciaGiu.addEventListener("click", function () {
-    const immagineDiDefault = immagineSinistra.querySelector(".active");
-    const immagineDiDefaultDestra = immaginiDestra.querySelector(".active");
+    const immagineDiDefault = containerSinistra.querySelector(".active");
+    const immagineDiDefaultDestra = containerDestra.querySelector(".active");
+
     immagineDiDefault.classList.remove("active");
     immagineDiDefaultDestra.classList.remove("active");
-    indiceImmagine++;
 
-    if (indiceImmagine > immagini.length - 1) {
-        indiceImmagine = 0;
+    indiceFoto++;
+    if (indiceFoto > foto.length - 1) {
+        indiceFoto = 0;
     }
+    const imgArrayFinto = containerSinistra.querySelectorAll("#img-text-container");
+    const imgArrayFintoDestra = containerDestra.querySelectorAll("img");
 
-    const imgArrayFinto = immagineSinistra.querySelectorAll("img");
-    const imgArrayFintoDestra = immaginiDestra.querySelectorAll("img");
-
-    const nuovaImgActive = imgArrayFinto[indiceImmagine];
-    const nuovaImgActiveDestra = imgArrayFintoDestra[indiceImmagine];
+    const nuovaImgActive = imgArrayFinto[indiceFoto];
+    const nuovaImgActiveDestra = imgArrayFintoDestra[indiceFoto];
 
     nuovaImgActive.classList.add("active");
     nuovaImgActiveDestra.classList.add("active");

@@ -1,84 +1,66 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: 0;
+#container-sx > div{
+    opacity: 0;
 }
-
-.container-generale{
-    width: 900px;
-    display: flex;
-    /* border: 1px solid; */
-    margin: auto;
-
+#container-sx > div.active{
+    opacity: 1;
 }
-
-.container-sx{
-    width: 80%;
-    position: relative;
-}
-#immagine-sinistra > img{
-    object-fit: cover;
+#container-sx > div img{
+    position: absolute;
     width: 100%;
-    height: 100%;
-    position: absolute;
-    opacity: 0;
-}
-#immagine-sinistra >img.active{
-    opacity: 1;
-}
-
-.container-dx{
-    width: 20%;
-    position: relative;
-}
-
-#immagini-destra > img{
-    width: calc(100% - 10px);
-    height: 100%;
     object-fit: cover;
-    filter: brightness(.3);
-}
-#immagini-destra > img.active{
-    filter: brightness(1);
-    border: 5px solid white;
-}
-#contenitore-testo{
-    position: absolute;
-    width: 500px;
-}
-#contenitore-testo > p{
-    width: 200px;
-    background-color: rgba(0,0,0,.7);
-    color: white;
-    opacity: 0;
-}
-#contenitore-testo  > p.active{
-    opacity: 1;
+    height: 100%;
+    object-position: center;
 }
 
-.container-frecce{
-    position: absolute;
-    height: 100%;
-    /* background-color:rgba(0,0,0,.5); */
-    width: 50px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
+#container-text{
+    bottom: 0;
+    background-color: rgba(0,0,0,.3);
+    height: 100px;
+    font-size: 10px;
+    width: 100%;
+    color: white;
+}
+
+#container-dx > img{
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    object-fit: cover;
+    height: 100%;
+    filter: brightness(.3);
 }
-.freccia{
-    background-color:rgba(0,0,0,.7);
+#container-dx > img.active{ 
+    filter: brightness(1);
+}
+.container-frecce{
+    z-index: 5;
+    /* background-color: red; */
+    height: 100%;
+    width: 50px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    width: 100%;
-    height: 30px;
-    border-radius: 10px;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    text-align: center;
+    left: 35%;
+}
+.frecce{
+    background-color: black;
+    border-radius: 20px;
     color: white;
 }
-.freccia-giu{
+
+
+
+/* #container-testo {
+    width: 100%;
     bottom: 0;
+    height: 50px;
+    position: absolute;
+    background-color: tomato;
+    z-index: 7;
+    opacity: 0; 
 }
+#container-testo > .active{
+    opacity: 1;
+} */
